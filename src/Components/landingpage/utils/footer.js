@@ -43,7 +43,7 @@ const Footer = () => {
         console.log(feedbackData);
         // Use axios.post instead of axios.put for adding new feedback
         await Axios.post(
-          "http://localhost:4000/feedbacks/add-feedback",
+          "https://movie-ticket-booking-pzhg.onrender.com/feedbacks/add-feedback",
           feedbackData
         )
           .then((res) => {

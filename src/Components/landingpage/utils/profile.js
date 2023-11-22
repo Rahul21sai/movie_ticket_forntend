@@ -21,7 +21,7 @@ const UserProfile = () => {
   useEffect(() => {
     axios
       .get(
-        "http://localhost:4000/shows/userBookedSeats/" +
+        "https://movie-ticket-booking-pzhg.onrender.com/shows/userBookedSeats/" +
           localStorage.getItem("id")
       )
       .then((res) => {
@@ -35,7 +35,7 @@ const UserProfile = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/users/profile/${id}`
+          `https://movie-ticket-booking-pzhg.onrender.com/users/profile/${id}`
         );
         setUserData(response.data);
       } catch (error) {
@@ -132,7 +132,10 @@ const UserProfile = () => {
         dob: userData.dob,
       };
       axios
-        .put(`http://localhost:4000/users/profile/${id}`, data)
+        .put(
+          `https://movie-ticket-booking-pzhg.onrender.com/users/profile/${id}`,
+          data
+        )
         .then((res) => {
           if (res.status === 200) {
             alert("Profile Updated Succesfully");

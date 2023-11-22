@@ -66,7 +66,7 @@ function OffcanvasExample() {
   const getDetails = () => {
     if (word.length !== 0) {
       axios
-        .get("http://localhost:4000/movies/searchbyname/" + word)
+        .get("https://movie-ticket-booking-pzhg.onrender.com/movies/searchbyname/" + word)
         .then((res) => {
           if (res.status === 200) {
             setData(res.data);
@@ -76,7 +76,7 @@ function OffcanvasExample() {
   };
   const getDetailsbygenre = (event) => {
     axios
-      .get("http://localhost:4000/movies/searchbygenre/" + event.target.id)
+      .get("https://movie-ticket-booking-pzhg.onrender.com/movies/searchbygenre/" + event.target.id)
       .then((res) => {
         if (res.status === 200) {
           setgenredata(res.data);
