@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import SeatBooking from "./booking_interface/main";
-import '../styles/styles.css'
+import "../styles/styles.css";
 
 function BookTickets() {
   const [city, setCity] = useState("");
@@ -24,12 +24,14 @@ function BookTickets() {
     for (let i = 0; i < 4; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
-      const formattedDate = date.toISOString().split('T')[0];
+      const formattedDate = date.toISOString().split("T")[0];
       options.push({ date, formattedDate });
     }
     setDates(options);
 
-    Axios.get("https://showtimesquad-backend.onrender.com/theatres/get-cities")
+    Axios.get(
+      "https://movie-ticket-booking-pzhg.onrender.com/theatres/get-cities"
+    )
       .then((res) => {
         if (res.status === 200) {
           setLocations(res.data);
@@ -43,7 +45,9 @@ function BookTickets() {
   }, []);
 
   const getTheatres = (selectedCity) => {
-    Axios.get(`https://showtimesquad-backend.onrender.com/theatres/get-theaters/${selectedCity}`)
+    Axios.get(
+      `https://movie-ticket-booking-pzhg.onrender.com/theatres/get-theaters/${selectedCity}`
+    )
       .then((res) => {
         if (res.status === 200) {
           setTheatres(res.data);
@@ -59,7 +63,7 @@ function BookTickets() {
 
   const handleCitySelect = (selectedCity) => {
     setCity(selectedCity);
-    
+
     getTheatres(selectedCity);
   };
 
@@ -76,13 +80,16 @@ function BookTickets() {
   };
 
   const handleSubmit = () => {
-    Axios.post("https://showtimesquad-backend.onrender.com/shows/createshow", {
-      showName: localStorage.getItem("movie"),
-      time: time,
-      date: showDate,
-      location: city,
-      theater: theaterName,
-    }).then((res) => {
+    Axios.post(
+      "https://movie-ticket-booking-pzhg.onrender.com/shows/createshow",
+      {
+        showName: localStorage.getItem("movie"),
+        time: time,
+        date: showDate,
+        location: city,
+        theater: theaterName,
+      }
+    ).then((res) => {
       if (res.status === 200) {
         setShowDetails(res.data);
         setShowSubmitButton(false);
@@ -98,7 +105,9 @@ function BookTickets() {
         {locations.map((location, index) => (
           <div
             key={index}
-            className={`card ${city === location ? "bg-warning btn mx-3" : "btn mx-3"}`}
+            className={`card ${
+              city === location ? "bg-warning btn mx-3" : "btn mx-3"
+            }`}
             onClick={() => handleCitySelect(location)}
           >
             {location}
@@ -110,7 +119,11 @@ function BookTickets() {
           {theatres.map((theater, index) => (
             <div
               key={index}
-              className={`card ${theaterName === theater.name ? "bg-warning btn mx-3" : " btn mx-3"}`}
+              className={`card ${
+                theaterName === theater.name
+                  ? "bg-warning btn mx-3"
+                  : " btn mx-3"
+              }`}
               onClick={() => handleTheaterSelect(theater.name)}
             >
               {theater.name}
@@ -123,7 +136,9 @@ function BookTickets() {
           {dates.map((dateObj, index) => (
             <div
               key={index}
-              className={`card ${showDate === dateObj.date ? "bg-warning btn mx-3" : " btn mx-3"}`}
+              className={`card ${
+                showDate === dateObj.date ? "bg-warning btn mx-3" : " btn mx-3"
+              }`}
               onClick={() => handleDateSelect(dateObj.date)}
             >
               {dateObj.formattedDate}
@@ -136,7 +151,9 @@ function BookTickets() {
           {timeSlots.map((timeSlot, index) => (
             <div
               key={index}
-              className={`card ${time === timeSlot ? "bg-warning btn mx-3" : " btn mx-3"}`}
+              className={`card ${
+                time === timeSlot ? "bg-warning btn mx-3" : " btn mx-3"
+              }`}
               onClick={() => handleTimeSelect(timeSlot)}
             >
               {timeSlot}
