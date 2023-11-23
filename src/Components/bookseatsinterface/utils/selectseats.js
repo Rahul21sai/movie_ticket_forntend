@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import Axios from 'axios';
-import './styles.css'
+import React, { useState } from "react";
+import Axios from "axios";
+import "./styles.css";
 
 const SeatsCheck = (props) => {
   const seatsarr = props.obj?.seats || [];
   console.log("seatsarr", seatsarr);
   const [amount, setAmount] = useState(0);
   const [selectedSeats, setSelectedSeats] = useState(new Set());
-  const [showseats,setshowseats]=useState(true);
+  const [showseats, setshowseats] = useState(true);
   const handleSeatClick = (seatId, isOccupied) => {
     if (!isOccupied) {
       const updatedSelectedSeats = new Set(selectedSeats);
@@ -21,12 +21,12 @@ const SeatsCheck = (props) => {
       setSelectedSeats(updatedSelectedSeats);
     }
   };
-  const getcolor=()=>{
-    if(localStorage.getItem("darkmode")==="yes"){
-      return "text-light"
+  const getcolor = () => {
+    if (localStorage.getItem("darkmode") === "yes") {
+      return "text-light";
     }
-    return "text-dark"
-  }
+    return "text-dark";
+  };
   const handleClick = () => {
     const updatedSeats = seatsarr.map((seatData) => {
       if (selectedSeats.has(seatData.seatId)) {
@@ -59,12 +59,14 @@ const SeatsCheck = (props) => {
               key={seatIndex}
               className={`col-1 ${
                 seatData.isOccupied
-                  ? 'btn btn-dark'
+                  ? "btn btn-dark"
                   : selectedSeats.has(seatData.seatId)
-                  ? 'btn btn-success'
-                  : 'btn btn-light'
+                  ? "btn btn-success"
+                  : "btn btn-light"
               }`}
-              onClick={() => handleSeatClick(seatData.seatId, seatData.isOccupied)}
+              onClick={() =>
+                handleSeatClick(seatData.seatId, seatData.isOccupied)
+              }
             >
               {seatData.seatId}
             </div>
@@ -73,7 +75,7 @@ const SeatsCheck = (props) => {
       }
       seatRows.push(
         <div key={i} className="row">
-          <div className='col-2'></div>
+          <div className="col-2"></div>
           {seatRow}
         </div>
       );
@@ -84,13 +86,20 @@ const SeatsCheck = (props) => {
   return (
     <center>
       <div className="container justify-content-center">
-        <div className='col-md-8'>
-          {showseats && renderSeats()}
-        </div>
-        {localStorage.setItem('selectedseatsnow', Array.from(selectedSeats).join(", "))}
-        <p className={`mt-2 ${getcolor()}`}>Selected Seats: {Array.from(selectedSeats).join(", ")}</p>
+        <div className="col-md-8">{showseats && renderSeats()}</div>
+        {localStorage.setItem(
+          "selectedseatsnow",
+          Array.from(selectedSeats).join(", ")
+        )}
+        <p className={`mt-2 ${getcolor()}`}>
+          Selected Seats: {Array.from(selectedSeats).join(", ")}
+        </p>
         <p className={`${getcolor()}`}>Total Amount: {amount}</p>
-        {showseats && <div className='btn btn-success' onClick={handleClick}>Confirm Tickets</div>}
+        {showseats && (
+          <div className="btn btn-success" onClick={handleClick}>
+            Confirm Tickets
+          </div>
+        )}
       </div>
     </center>
   );
@@ -103,7 +112,7 @@ const SeatBooking = (props) => {
   console.log(prevSelected);
   console.log(selectedSeats);
   console.log(_id);
-  localStorage.setItem('show_id', _id)
+  localStorage.setItem("show_id", _id);
   const getChilddata = (data, selectedSeats) => {
     setSelectedSeats(new Set(selectedSeats));
     const copy = {
@@ -112,9 +121,9 @@ const SeatBooking = (props) => {
       theater: props.obj.theater,
       date: props.obj.date,
       time: props.obj.time,
-      seats: data
+      seats: data,
     };
-    props.getfinaldata(copy)
+    props.getfinaldata(copy);
   };
 
   return (

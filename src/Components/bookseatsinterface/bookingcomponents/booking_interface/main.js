@@ -20,7 +20,10 @@ const SeatBooking = (props) => {
       time: props.obj.time,
       seats: data,
     };
-    Axios.put("https://movie-ticket-booking-pzhg.onrender.com/shows/updateshow/" + _id, copy)
+    Axios.put(
+      "https://movie-ticket-booking-pzhg.onrender.com/shows/updateshow/" + _id,
+      copy
+    )
       .then((res) => {
         if (res.status === 200) alert("Booked Successfully");
         else Promise.reject();

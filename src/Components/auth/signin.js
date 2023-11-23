@@ -13,7 +13,10 @@ function SignIn() {
     event.preventDefault();
     setLoading(true);
 
-    Axios.get("https://movie-ticket-booking-pzhg.onrender.com/users/get-password/" + email)
+    Axios.get(
+      "https://movie-ticket-booking-pzhg.onrender.com/users/get-password/" +
+        email
+    )
       .then((res) => {
         if (res.status === 200) {
           const data = res.data;
