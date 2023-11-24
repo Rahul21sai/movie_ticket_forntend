@@ -82,7 +82,7 @@ const SignUp = () => {
             setLoading(false);
           } else {
             Axios.post(
-              "https://movie-ticket-booking-pzhg.onrender.com/users/register/",
+              "https://movie-ticket-booking-pzhg.onrender.com/users/register",
               data
             )
               .then((res) => {
