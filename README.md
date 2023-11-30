@@ -3,6 +3,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![image](https://github.com/Rahul21sai/movie_ticket_forntend/assets/110412514/2a5dd8df-58ae-471d-a171-295ad2891f98)
+
 ## Available Scripts
 
 In the project directory, you can run:
